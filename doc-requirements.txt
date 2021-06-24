@@ -39,9 +39,9 @@ black==21.6b0
     # via papermill
 bleach==3.3.0
     # via nbconvert
-boto3==1.17.99
+boto3==1.17.100
     # via sagemaker-training
-botocore==1.20.99
+botocore==1.20.100
     # via
     #   boto3
     #   s3transfer
@@ -88,7 +88,7 @@ entrypoints==0.3
     # via
     #   nbconvert
     #   papermill
-flyteidl==0.19.3
+flyteidl==0.19.5
     # via flytekit
 git+git://github.com/flyteorg/furo@main
     # via -r doc-requirements.in
