@@ -35,7 +35,11 @@ from flytekit.models.security import SecurityContext
 
 def kwtypes(**kwargs) -> Dict[str, Type]:
     """
-    Converts the keyword arguments to typed dictionary
+    This is a small helper function to convert the keyword arguments to an OrderedDict of types.
+
+    .. code-block:: python
+
+        kwtypes(a=int, b=str)
     """
     d = collections.OrderedDict()
     for k, v in kwargs.items():
@@ -46,7 +50,9 @@ def kwtypes(**kwargs) -> Dict[str, Type]:
 @dataclass
 class TaskMetadata(object):
     """
-    Create Metadata to be associated with this Task
+    Metadata for a Task. Things like retries and whether or not caching is turned on, and cache version are in here.
+
+    See the :std:ref:`IDL <idl:protos/docs/core/core:taskmetadata>` for the protobuf definition.
 
     Args:
       cache: Boolean that indicates if caching should be enabled
@@ -522,12 +528,12 @@ class TaskResolverMixin(object):
     #. the ``location`` of the task's task resolver, followed by two dashes, followed by
     #. the arguments provided by calling the ``loader_args`` function below.
 
-    The ``default_task_resolver`` declared below knows that ::
+    The ``default_task_resolver`` declared below knows that
 
     * When ``loader_args`` is called on a task, to look up the module the task is in, and the name of the task (the
       key of the task in the module, either the function name, or the variable it was assigned to).
     * When ``load_task`` is called, it interprets the first part of the command as the module to call
-    ``importlib.import_module`` on, and then looks for a key ``t1``.
+      ``importlib.import_module`` on, and then looks for a key ``t1``.
 
     This is just the default behavior. Users should feel free to implement their own resolvers.
     """

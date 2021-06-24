@@ -727,7 +727,12 @@ def workflow(
     .. literalinclude:: ../../../tests/flytekit/unit/core/test_workflows.py
        :pyobject: my_wf_example
 
-    Please see :std:ref:`cookbook:sphx_glr_auto_core_flyte_basics_basic_workflow.py` for more usage examples.
+    Again, users should keep in mind that even though the body of the function looks like regular Python, it is
+    actually not. When flytekit scans the workflow function, the objects being passed around between the tasks are not
+    your typical Python values. So even though you may have a task ``t1() -> int``, when ``a = t1()`` is called, ``a``
+    will not be an integer so if you try to ``range(a)`` you'll get an error.
+
+    Please see the :std:doc:`cookbook <cookbook:auto/core/flyte_basics/basic_workflow>` for more usage examples.
 
     :param _workflow_function: This argument is implicitly passed and represents the decorated function.
     :param failure_policy: Use the options in flytekit.WorkflowFailurePolicy
